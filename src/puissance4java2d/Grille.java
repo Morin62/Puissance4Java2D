@@ -45,4 +45,9 @@ public class Grille implements Constantes {
              g.drawRect(c.getX(), c.getY(), c.getLargeur(), c.getHauteur());
   
     }
+    
+    public boolean isCaseDispo(int posX, int posY) {
+        
+        return true;
+    }
 }

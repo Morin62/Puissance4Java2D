@@ -14,11 +14,13 @@ public class Pion implements Constantes {
     
     private int indiceX;
     private int indiceY;
+    private Color couleur;
     
-    public Pion (int posX, int posY) {
+    public Pion (int posX, int posY, Color couleur) {
         
         this.indiceX = posX;
         this.indiceY = posY;
+        this.couleur = couleur;
     }
     
     public void Afficher(Graphics g) {
@@ -27,7 +29,7 @@ public class Pion implements Constantes {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.RED);
-        g.fillOval(this.getX(), this.getY(), DIM_CASE, DIM_CASE);
+        g.fillOval(this.getX()+4, this.getY()+4, DIM_CASE-8, DIM_CASE-8);
     }
 
     

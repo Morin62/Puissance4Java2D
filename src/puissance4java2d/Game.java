@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  * Coeur du jeu, boucle de calcul et d'affichage
@@ -15,42 +16,53 @@ import java.awt.event.KeyEvent;
 public class Game implements Constantes {
        
     private final Grille grille;
-    private Pion p;
+    private Curseur curseur;
+    private ArrayList<Pion> listePions;
+    
+    private Color couleurPionBleu;
+    private Color couleurPionRouge;
 
     public Game() {
-
+        
+        this.couleurPionBleu = Color.blue;
+        this.couleurPionRouge = Color.RED;
         this.grille = new Grille();
-        this.p = new Pion(2, 2);
+        this.curseur = new Curseur(4);
+        this.listePions = new ArrayList<Pion>();
+
     }
 
     public void calcul() {
         
-       jouerPion();
-
+        this.curseur.calcul();
     }
 
     public void affichage(Graphics g) {
         
+        this.curseur.affichage(g);
+        
         if(GRIILE_ON)
             this.grille.Affichage(g);
         
-        this.p.Afficher(g);
+        // Dessin des pions
+        for (Pion p : this.listePions) {
+            
+            p.Afficher(g);
+        }
        
     }
     
-    public void jouerPion() {
+    public void ajouterPion(int poX, int posY, Color couleur) {
         
+        this.listePions.add(new Pion(posY, posY, couleur));
     }
     
     public void gestionDuClavier(KeyEvent ke) {
         
-//        if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
-//            this.serpent.setNouvelleDirection(Serpent.Direction.VERS_LA_DROITE);
-//        else if(ke.getKeyCode() == KeyEvent.VK_LEFT)
-//            this.serpent.setNouvelleDirection(Serpent.Direction.VERS_LA_GAUCHE);
-
-//        else if (ke.getKeyCode() == KeyEvent.VK_DOWN)
-//            this.serpent.setNouvelleDirection(Serpent.Direction.VERS_LE_BAS);
+        if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
+            this.curseur.deplacerCurseur(Curseur.Direction.VERS_LA_DROITE);
+        else if(ke.getKeyCode() == KeyEvent.VK_LEFT)
+            this.curseur.deplacerCurseur(Curseur.Direction.VERS_LA_GAUCHE);
   
     }
   
