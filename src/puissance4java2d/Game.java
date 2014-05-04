@@ -54,17 +54,6 @@ public class Game implements Constantes {
             System.out.println("size"+this.listePions.size());
         }
     }
-//    
-//    public boolean isCaseDispo(int posX, int posY) {
-//        
-//        
-//        for (Pion p : this.listePions) {
-//            
-//            if(pion.equals(p))
-//                return false;
-//        }
-//        return true;
-//    }
     
     public void ajouterPion() {
         
@@ -78,11 +67,11 @@ public class Game implements Constantes {
                 pion.setPosY(y--);
         } 
         
-//        if(this.compteurCouleur % 2 == 0)
-//            this.listePions.add(new Pion(this.curseur.getPosX(), y, this.couleurPionBleu));
-//        else if(this.compteurCouleur % 2 != 0)
-//            this.listePions.add(new Pion(this.curseur.getPosX(), y, this.couleurPionRouge));
-//        
+        if(this.compteurCouleur % 2 == 0)
+            pion.setColor(couleurPionBleu);
+        else if(this.compteurCouleur % 2 != 0)
+            pion.setColor(couleurPionRouge);
+
         this.listePions.add(pion);
         this.compteurCouleur++;
     }

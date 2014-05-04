@@ -42,6 +42,11 @@ public class Pion implements Constantes {
         return false;
     }
     
+    public void setColor(Color couleur) {
+        
+        this.couleur = couleur;
+    }
+    
     public int getPosX() {
         return this.indiceX;
     }
