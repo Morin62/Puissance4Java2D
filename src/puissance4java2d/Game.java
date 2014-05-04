@@ -21,14 +21,17 @@ public class Game implements Constantes {
     
     private Color couleurPionBleu;
     private Color couleurPionRouge;
-
+    
+    private int compteurCouleur;
+    
     public Game() {
         
         this.couleurPionBleu = Color.blue;
-        this.couleurPionRouge = Color.RED;
+        this.couleurPionRouge = Color.red;
         this.grille = new Grille();
         this.curseur = new Curseur(4);
         this.listePions = new ArrayList<Pion>();
+        this.compteurCouleur = 0;
 
     }
 
@@ -47,14 +50,41 @@ public class Game implements Constantes {
         // Dessin des pions
         for (Pion p : this.listePions) {
             
-            p.Afficher(g);
+            p.afficher(g);
+            System.out.println("size"+this.listePions.size());
         }
-       
     }
+//    
+//    public boolean isCaseDispo(int posX, int posY) {
+//        
+//        
+//        for (Pion p : this.listePions) {
+//            
+//            if(pion.equals(p))
+//                return false;
+//        }
+//        return true;
+//    }
     
-    public void ajouterPion(int poX, int posY, Color couleur) {
+    public void ajouterPion() {
         
-        this.listePions.add(new Pion(posY, posY, couleur));
+        int y =  NB_CASE_Y-1;
+        
+        Pion pion = new Pion(this.curseur.getPosX(), y, this.couleurPionBleu);
+        
+        for (Pion p : this.listePions) {
+            
+            if(pion.equals(p))
+                pion.setPosY(y--);
+        } 
+        
+//        if(this.compteurCouleur % 2 == 0)
+//            this.listePions.add(new Pion(this.curseur.getPosX(), y, this.couleurPionBleu));
+//        else if(this.compteurCouleur % 2 != 0)
+//            this.listePions.add(new Pion(this.curseur.getPosX(), y, this.couleurPionRouge));
+//        
+        this.listePions.add(pion);
+        this.compteurCouleur++;
     }
     
     public void gestionDuClavier(KeyEvent ke) {
@@ -63,6 +93,9 @@ public class Game implements Constantes {
             this.curseur.deplacerCurseur(Curseur.Direction.VERS_LA_DROITE);
         else if(ke.getKeyCode() == KeyEvent.VK_LEFT)
             this.curseur.deplacerCurseur(Curseur.Direction.VERS_LA_GAUCHE);
+        else if(ke.getKeyCode() == KeyEvent.VK_DOWN) {
+            this.ajouterPion();
+        }
   
     }
   

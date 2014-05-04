@@ -35,14 +35,6 @@ public class Curseur implements Constantes {
         g2.fillOval(this.indiceX*DIM_CASE+DIM_CASE/2-4, 10, 8, 8);
     }
 
-    public void setPosX(int indiceX) {
-        this.indiceX = indiceX;
-    }
-    
-    public int getPosX() {
-        return this.indiceX;
-    }
-    
     public void deplacerCurseur(Direction nouvelleDir) {
 
         this.nouvelleDirection = nouvelleDir;
@@ -56,6 +48,14 @@ public class Curseur implements Constantes {
             this.setPosX(0);
         if(this.getPosX() > NB_CASE_X)
             this.setPosX(NB_CASE_X-1);
+    }
+    
+     public void setPosX(int indiceX) {
+        this.indiceX = indiceX;
+    }
+    
+    public int getPosX() {
+        return this.indiceX;
     }
     
     public int getX() {

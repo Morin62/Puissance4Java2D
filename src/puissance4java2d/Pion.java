@@ -23,12 +23,12 @@ public class Pion implements Constantes {
         this.couleur = couleur;
     }
     
-    public void Afficher(Graphics g) {
+    public void afficher(Graphics g) {
         
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.RED);
+        g2.setColor(this.couleur);
         g.fillOval(this.getX()+4, this.getY()+4, DIM_CASE-8, DIM_CASE-8);
     }
 
