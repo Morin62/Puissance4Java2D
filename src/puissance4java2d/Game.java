@@ -23,6 +23,7 @@ public class Game implements Constantes {
     private Color couleurPionRouge;
     
     private int compteurCouleur;
+    private boolean isPartieFinie;
     
     public Game() {
         
@@ -32,17 +33,17 @@ public class Game implements Constantes {
         this.curseur = new Curseur(4);
         this.listePions = new ArrayList<Pion>();
         this.compteurCouleur = 0;
+        this.isPartieFinie = false;
 
     }
 
     public void calcul() {
         
         this.curseur.calcul();
+        isFinDePartie();
     }
 
     public void affichage(Graphics g) {
-        
-        this.curseur.affichage(g);
         
         if(GRIILE_ON)
             this.grille.Affichage(g);
@@ -53,9 +54,19 @@ public class Game implements Constantes {
             p.afficher(g);
             System.out.println("size"+this.listePions.size());
         }
+        
+        g.setColor(Color.BLACK);
+        this.curseur.affichage(g);
+        
+        if(isPartieFinie) {
+            
+            g.setColor(Color.red);
+            g.drawString("partie finie", 100, 100);
+        }
+        
     }
     
-public void ajouterPion() {
+    public void ajouterPion() {
         
         Pion pion = new Pion(this.curseur.getPosX(), NB_CASE_Y-1, this.couleurPionBleu);
         
@@ -68,7 +79,9 @@ public void ajouterPion() {
         if(this.compteurCouleur % 2 == 0)
             pion.setColor(couleurPionRouge);
 
-        this.listePions.add(pion);
+        if(pion.getPosY() >= 0)
+            this.listePions.add(pion);
+        
         this.compteurCouleur++;
     }
     
@@ -81,7 +94,19 @@ public void ajouterPion() {
         else if(ke.getKeyCode() == KeyEvent.VK_DOWN) {
             this.ajouterPion();
         }
-  
+    }
+    
+    public boolean isFinDePartie() {
+        
+        for (Pion p : this.listePions) {
+            
+            
+        }  
+            
+        if(this.listePions.size() >= NB_CASE_X*NB_CASE_Y)
+            this.isPartieFinie = true;
+            
+        return this.isPartieFinie;
     }
   
 }
