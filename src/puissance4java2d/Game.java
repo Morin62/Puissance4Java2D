@@ -55,21 +55,17 @@ public class Game implements Constantes {
         }
     }
     
-    public void ajouterPion() {
+public void ajouterPion() {
         
-        int y =  NB_CASE_Y-1;
-        
-        Pion pion = new Pion(this.curseur.getPosX(), y, this.couleurPionBleu);
+        Pion pion = new Pion(this.curseur.getPosX(), NB_CASE_Y-1, this.couleurPionBleu);
         
         for (Pion p : this.listePions) {
             
             if(pion.equals(p))
-                pion.setPosY(y--);
+                pion.setPosY(p.getPosY()-1);
         } 
         
         if(this.compteurCouleur % 2 == 0)
-            pion.setColor(couleurPionBleu);
-        else if(this.compteurCouleur % 2 != 0)
             pion.setColor(couleurPionRouge);
 
         this.listePions.add(pion);
